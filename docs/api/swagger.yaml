@@ -1,0 +1,153 @@
+basePath: /
+host: localhost:12052
+info:
+  contact:
+    email: dev@xiaosongfu.com
+    name: xiaosongfu
+    url: https://xiaosongfu.com
+  description: FreeSWITCH 助手，包括呼叫中心、CDR、用户配置、拨号计划配置等
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: FreeSWITCH 助手项目接口文档
+  version: v0.1.0
+paths:
+  /agent/add/{name}:
+    get:
+      parameters:
+      - description: the agent name,always is a number,such as 1010
+        in: path
+        name: name
+        required: true
+        type: string
+      summary: add a agent
+      tags:
+      - Agent
+  /agent/del/{name}:
+    get:
+      parameters:
+      - description: the agent name,always is a number,such as 1010
+        in: path
+        name: name
+        required: true
+        type: string
+      summary: delete a agent
+      tags:
+      - Agent
+  /agent/list:
+    get:
+      summary: list all agents
+      tags:
+      - Agent
+  /agent/updateAgentContact/{name}:
+    post:
+      parameters:
+      - description: the agent name,always is a number,such as 1010
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the contact of the agent,such as 'user/1010'
+        in: body
+        name: contact
+        required: true
+        schema:
+          type: string
+      summary: update agent's contact
+      tags:
+      - Agent
+  /agent/updateAgentStatus/{name}:
+    post:
+      parameters:
+      - description: the agent name,always is a number,such as 1010
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: the new status of the agent,available value is 'Available' and
+          'Logged Out'
+        in: body
+        name: status
+        required: true
+        schema:
+          type: string
+      summary: update agent's status
+      tags:
+      - Agent
+  /queue/list:
+    get:
+      summary: list all queues
+      tags:
+      - Queue
+  /queue/listQueueAgents/{queue}:
+    get:
+      parameters:
+      - description: the queue of which you want to query
+        in: path
+        name: queue
+        required: true
+        type: string
+      summary: list all agents of a queue
+      tags:
+      - Queue
+  /queue/listQueueMembers/{queue}:
+    get:
+      parameters:
+      - description: the queue of which you want to query
+        in: path
+        name: queue
+        required: true
+        type: string
+      summary: list all members of a queue
+      tags:
+      - Queue
+  /queue/listQueueTiers/{queue}:
+    get:
+      parameters:
+      - description: the queue of which you want to query
+        in: path
+        name: queue
+        required: true
+        type: string
+      summary: list all tiers of a queue
+      tags:
+      - Queue
+  /tier/add/{queue}/{agent}:
+    get:
+      parameters:
+      - description: the queue of which you want to add to
+        in: path
+        name: queue
+        required: true
+        type: string
+      - description: the agent of which you want to add
+        in: path
+        name: agent
+        required: true
+        type: string
+      summary: add a tier
+      tags:
+      - Tier
+  /tier/del/{queue}/{agent}:
+    get:
+      parameters:
+      - description: the queue of which you want to add to
+        in: path
+        name: queue
+        required: true
+        type: string
+      - description: the agent of which you want to add
+        in: path
+        name: agent
+        required: true
+        type: string
+      summary: delete a tier
+      tags:
+      - Tier
+  /tier/list:
+    get:
+      summary: list all tiers
+      tags:
+      - Tier
+swagger: "2.0"

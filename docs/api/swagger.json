@@ -1,0 +1,231 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "FreeSWITCH 助手，包括呼叫中心、CDR、用户配置、拨号计划配置等",
+        "title": "FreeSWITCH 助手项目接口文档",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "xiaosongfu",
+            "url": "https://xiaosongfu.com",
+            "email": "dev@xiaosongfu.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "v0.1.0"
+    },
+    "host": "localhost:12052",
+    "basePath": "/",
+    "paths": {
+        "/agent/add/{name}": {
+            "get": {
+                "tags": [
+                    "Agent"
+                ],
+                "summary": "add a agent",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the agent name,always is a number,such as 1010",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/agent/del/{name}": {
+            "get": {
+                "tags": [
+                    "Agent"
+                ],
+                "summary": "delete a agent",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the agent name,always is a number,such as 1010",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/agent/list": {
+            "get": {
+                "tags": [
+                    "Agent"
+                ],
+                "summary": "list all agents"
+            }
+        },
+        "/agent/updateAgentContact/{name}": {
+            "post": {
+                "tags": [
+                    "Agent"
+                ],
+                "summary": "update agent's contact",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the agent name,always is a number,such as 1010",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "the contact of the agent,such as 'user/1010'",
+                        "name": "contact",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/agent/updateAgentStatus/{name}": {
+            "post": {
+                "tags": [
+                    "Agent"
+                ],
+                "summary": "update agent's status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the agent name,always is a number,such as 1010",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "the new status of the agent,available value is 'Available' and 'Logged Out'",
+                        "name": "status",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/queue/list": {
+            "get": {
+                "tags": [
+                    "Queue"
+                ],
+                "summary": "list all queues"
+            }
+        },
+        "/queue/listQueueAgents/{queue}": {
+            "get": {
+                "tags": [
+                    "Queue"
+                ],
+                "summary": "list all agents of a queue",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the queue of which you want to query",
+                        "name": "queue",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/queue/listQueueMembers/{queue}": {
+            "get": {
+                "tags": [
+                    "Queue"
+                ],
+                "summary": "list all members of a queue",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the queue of which you want to query",
+                        "name": "queue",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/queue/listQueueTiers/{queue}": {
+            "get": {
+                "tags": [
+                    "Queue"
+                ],
+                "summary": "list all tiers of a queue",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the queue of which you want to query",
+                        "name": "queue",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/tier/add/{queue}/{agent}": {
+            "get": {
+                "tags": [
+                    "Tier"
+                ],
+                "summary": "add a tier",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the queue of which you want to add to",
+                        "name": "queue",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "the agent of which you want to add",
+                        "name": "agent",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/tier/del/{queue}/{agent}": {
+            "get": {
+                "tags": [
+                    "Tier"
+                ],
+                "summary": "delete a tier",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the queue of which you want to add to",
+                        "name": "queue",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "the agent of which you want to add",
+                        "name": "agent",
+                        "in": "path",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/tier/list": {
+            "get": {
+                "tags": [
+                    "Tier"
+                ],
+                "summary": "list all tiers"
+            }
+        }
+    }
+}
