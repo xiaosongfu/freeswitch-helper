@@ -6,11 +6,11 @@ import (
 )
 
 type CallCenter struct {
-	Esl *eslgo.Connection
+	esl *eslgo.Connection
 }
 
 func NewCallCenter(esl *eslgo.Connection) *CallCenter {
-	return &CallCenter{Esl: esl}
+	return &CallCenter{esl: esl}
 }
 
 func (cc *CallCenter) RegisterRoutes(engine *gin.Engine) {

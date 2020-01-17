@@ -15,7 +15,7 @@ import (
 // @Router /queue/list [get]
 //
 func (cc *CallCenter) listQueue(ctx *gin.Context) {
-	evt, err := cc.Esl.ApiCommand(freeswitch.QueueList)
+	evt, err := cc.esl.ApiCommand(freeswitch.QueueList)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -38,7 +38,7 @@ func (cc *CallCenter) listQueue(ctx *gin.Context) {
 func (cc *CallCenter) listQueueAgents(ctx *gin.Context) {
 	queue := ctx.Param("queue")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.QueueAgentsList, queue))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.QueueAgentsList, queue))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -61,7 +61,7 @@ func (cc *CallCenter) listQueueAgents(ctx *gin.Context) {
 func (cc *CallCenter) listQueueMembers(ctx *gin.Context) {
 	queue := ctx.Param("queue")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.QueueMembersList, queue))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.QueueMembersList, queue))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -84,7 +84,7 @@ func (cc *CallCenter) listQueueMembers(ctx *gin.Context) {
 func (cc *CallCenter) listQueueTiers(ctx *gin.Context) {
 	queue := ctx.Param("queue")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.QueueTiersList, queue))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.QueueTiersList, queue))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),

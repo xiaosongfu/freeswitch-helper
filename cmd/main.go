@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/xiaosongfu/eslgo"
 	"github.com/xiaosongfu/freeswitch-helper/pkg/callcenter"
+	"github.com/xiaosongfu/freeswitch-helper/pkg/directory"
 )
 
 // @title FreeSWITCH 助手项目接口文档
@@ -20,6 +21,7 @@ import (
 //
 // @host localhost:12052
 // @BasePath /
+// @schemes http https
 //
 func main() {
 	r := gin.New()
@@ -36,6 +38,10 @@ func main() {
 	// register call center
 	callCenter := callcenter.NewCallCenter(esl)
 	callCenter.RegisterRoutes(r)
+
+	// register directory
+	dir := directory.NewDirectory(nil)
+	dir.RegisterRoutes(r)
 
 	_ = r.Run(":12052")
 }

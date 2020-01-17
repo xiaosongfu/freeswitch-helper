@@ -15,7 +15,7 @@ import (
 // @Router /agent/list [get]
 //
 func (cc *CallCenter) listAgent(ctx *gin.Context) {
-	evt, err := cc.Esl.ApiCommand(freeswitch.AgentList)
+	evt, err := cc.esl.ApiCommand(freeswitch.AgentList)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -38,7 +38,7 @@ func (cc *CallCenter) listAgent(ctx *gin.Context) {
 func (cc *CallCenter) addAgent(ctx *gin.Context) {
 	name := ctx.Param("name")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.AgentAdd, name))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.AgentAdd, name))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -61,7 +61,7 @@ func (cc *CallCenter) addAgent(ctx *gin.Context) {
 func (cc *CallCenter) delAgent(ctx *gin.Context) {
 	name := ctx.Param("name")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.AgentDel, name))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.AgentDel, name))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -86,7 +86,7 @@ func (cc *CallCenter) updateAgentStatus(ctx *gin.Context) {
 	name := ctx.Param("name")
 	status := ctx.PostForm("status")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.AgentSetStatus, name, status))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.AgentSetStatus, name, status))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -111,7 +111,7 @@ func (cc *CallCenter) updateAgentContact(ctx *gin.Context) {
 	name := ctx.Param("name")
 	contact := ctx.PostForm("contact")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.AgentSetContact, name, contact))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.AgentSetContact, name, contact))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),

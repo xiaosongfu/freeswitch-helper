@@ -47,3 +47,6 @@ serve-api-docs:
 
 docker-api-docs:
 	docker build -t freeswitch-helper-api-docs:latest ./docs/api
+
+docker-api-docs-swaggerui:
+	docker build -t freeswitch-helper-api-docs-swaggerui:latest -f ./docs/api/Dockerfile-swaggerui ./docs/api

@@ -1,0 +1,8 @@
+# reference :
+# the port is: 8080
+
+FROM swaggerapi/swagger-ui
+
+COPY swagger.json /swagger
+
+ENV SWAGGER_JSON /swagger/swagger.json

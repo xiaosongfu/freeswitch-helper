@@ -15,7 +15,7 @@ import (
 // @Router /tier/list [get]
 //
 func (cc *CallCenter) listTier(ctx *gin.Context) {
-	evt, err := cc.Esl.ApiCommand(freeswitch.TierList)
+	evt, err := cc.esl.ApiCommand(freeswitch.TierList)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -40,7 +40,7 @@ func (cc *CallCenter) addTier(ctx *gin.Context) {
 	queue := ctx.Param("queue")
 	agent := ctx.Param("agent")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.TierAdd, queue, agent))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.TierAdd, queue, agent))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
@@ -65,7 +65,7 @@ func (cc *CallCenter) delTier(ctx *gin.Context) {
 	queue := ctx.Param("queue")
 	agent := ctx.Param("agent")
 
-	evt, err := cc.Esl.ApiCommand(fmt.Sprintf(freeswitch.TierDel, queue, agent))
+	evt, err := cc.esl.ApiCommand(fmt.Sprintf(freeswitch.TierDel, queue, agent))
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"msg": err.Error(),
